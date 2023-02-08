@@ -51,15 +51,14 @@ void setMode(int mode)
         analogWrite(GLED, greenVal); 
         analogWrite(BLED, blueVal);
       }
-  
-    (mode = 0) //OFF
-  
-   else
+    //OFF (mode = 0)
+    else
     {
-      digitalWrite(RLED, LOW);
-      digitalWrite(GLED, LOW);
-      digitalWrite(BLED, LOW);
+      digitalWrite(RLED, HIGH);
+      digitalWrite(GLED, HIGH);
+      digitalWrite(BLED, HIGH);
     }
+  
 }
  
  void loop()
