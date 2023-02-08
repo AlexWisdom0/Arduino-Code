@@ -1,0 +1,75 @@
+const int BLED = 9;
+const int GLED = 10;
+const int RLED = 11;
+const int BUTTON = 2;
+
+int redVal = 0;
+int greenVal = 0;
+int blueVal = 0;
+
+boolean lastButton = LOW;  // Last button state
+boolean currentButton = LOW; // Current button state
+int ledMode = 0;  // Cycle between LED states
+
+void setup()
+{
+  pinMode (BLED, OUTPUT);  // Set blue LED as output
+  pinMode (GLED, OUTPUT);  // Set green LED as output
+  pinMode (RLED, OUTPUT);  // Set red LED as output
+  pinMode (BUTTON, INPUT);  // Set button as input
+}
+
+// Debouncing Function
+
+boolean debounce(boolean last)
+{
+  boolean current = digitalRead(BUTTON);  // Read the button state
+  if (last != current)
+  {
+    delay(5);  // Wait 5ms
+    current = digitalRead(BUTTON);  // Read it again
+  }
+  return current;  // Return current value
+  
+}
+
+// LED Mode Selection
+
+void setMode(int mode)
+{
+   //PURPLE (RED+BLUE) 
+   if (mode == 1) 
+    {
+      analogWrite(RLED, 127);
+      analogWrite(GLED, 255);
+      analogWrite(BLED, 127);
+    }
+   //RANDOM COLOR
+    else if (mode == 2)
+      {
+        analogWrite(RLED, redVal);
+        analogWrite(GLED, greenVal); 
+        analogWrite(BLED, blueVal);
+      }
+  
+    (mode = 0) //OFF
+  
+   else
+    {
+      digitalWrite(RLED, LOW);
+      digitalWrite(GLED, LOW);
+      digitalWrite(BLED, LOW);
+    }
+}
+ 
+ void loop()
+ {
+  currentButton = debounce(lastButton);  // Read debounced state
+  if (lastButton == LOW && currentButton == HIGH) // If pressed
+  {
+    ledMode++;  // Increment LED value
+  }
+  lastButton = currentButton;  // Reset button value
+  if (ledMode == 3) ledMode = 0; // Reset counter to 0
+    setMode(ledMode);  // Change LED state
+ }
