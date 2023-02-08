@@ -35,62 +35,60 @@ void setMode(int mode)
 {
   //RED
   if (mode == 1)
-    {
-      digitalWrite(RLED, LOW); 
-      digitalWrite(GLED, HIGH); 
-      digitalWrite(BLED, HIGH);
-    }
-   //GREEN
-    else if (mode == 2) 
-    {
-      digitalWrite(RLED, HIGH);
-      digitalWrite(GLED, LOW); 
-      digitalWrite(BLED, HIGH);
-    }
-   //BLUE
-    else if (mode == 3) 
-    {
-      digitalWrite(RLED, HIGH); 
-      digitalWrite(GLED, HIGH); 
-      digitalWrite(BLED, LOW);
-    }
-   //PURPLE (RED+BLUE) 
-    else if (mode == 4) 
-    {
-      analogWrite(RLED, 127);
-      analogWrite(GLED, 255);
-      analogWrite(BLED, 127);
-    }
-    //TEAL (BLUE+GREEN) 
-    else if (mode == 5) 
-    {
-      analogWrite(RLED, 255);
-      analogWrite(GLED, 127);
-      analogWrite(BLED, 127);
-    } 
-   //ORANGE (GREEN+RED) 
-    else if (mode == 6) 
-    {
-      analogWrite(RLED, 127);
-      analogWrite(GLED, 127); 
-      analogWrite(BLED, 255);
-    }
-   //WHITE (GREEN+RED+BLUE) 
-    else if (mode == 7)
-    {
-      analogWrite(RLED, 170);
-      analogWrite(GLED, 170); 
-      analogWrite(BLED, 170);
-    }
-  
-      (mode = 0) //OFF
-  
-   else
-    {
-      digitalWrite(RLED, LOW);
-      digitalWrite(GLED, LOW);
-      digitalWrite(BLED, LOW);
-    }
+  {
+    digitalWrite(RLED, LOW);
+    digitalWrite(GLED, HIGH);
+    digitalWrite(BLED, HIGH);
+  }
+  //GREEN
+  else if (mode == 2)
+  {
+    digitalWrite(RLED, HIGH);
+    digitalWrite(GLED, LOW);
+    digitalWrite(BLED, HIGH);
+  }
+  //BLUE
+  else if (mode == 3)
+  {
+    digitalWrite(RLED, HIGH);
+    digitalWrite(GLED, HIGH);
+    digitalWrite(BLED, LOW);
+  }
+  //PURPLE (RED+BLUE)
+  else if (mode == 4)
+  {
+    analogWrite(RLED, 127);
+    analogWrite(GLED, 255);
+    analogWrite(BLED, 127);
+  }
+  //TEAL (BLUE+GREEN)
+  else if (mode == 5)
+  {
+    analogWrite(RLED, 255);
+    analogWrite(GLED, 127);
+    analogWrite(BLED, 127);
+  }
+  //ORANGE (GREEN+RED)
+  else if (mode == 6)
+  {
+    analogWrite(RLED, 127);
+    analogWrite(GLED, 127);
+    analogWrite(BLED, 255);
+  }
+  //WHITE (GREEN+RED+BLUE)
+  else if (mode == 7)
+  {
+    analogWrite(RLED, 170);
+    analogWrite(GLED, 170);
+    analogWrite(BLED, 170);
+  }
+  //OFF (mode = 0)
+  else
+  {
+    digitalWrite(RLED, HIGH);
+    digitalWrite(GLED, HIGH);
+    digitalWrite(BLED, HIGH);
+  }
 }
  
  void loop()
