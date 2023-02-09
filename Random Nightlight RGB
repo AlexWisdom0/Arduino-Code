@@ -3,9 +3,10 @@ const int GLED = 10;
 const int RLED = 11;
 const int BUTTON = 2;
 
-int redVal = 0;
-int greenVal = 0;
-int blueVal = 0;
+int redVal = random(255);
+int blueVal = random(255);
+int greenVal = random(255);
+
 
 boolean lastButton = LOW;  // Last button state
 boolean currentButton = LOW; // Current button state
@@ -40,28 +41,28 @@ void setMode(int mode)
    //PURPLE (RED+BLUE) 
    if (mode == 1) 
     {
-      analogWrite(RLED, 127);
-      analogWrite(GLED, 255);
-      analogWrite(BLED, 127);
+      analogWrite(RLED, 255);
+      analogWrite(GLED, 0);
+      analogWrite(BLED, 255);
     }
    //RANDOM COLOR
-    else if (mode == 2)
-      {
+      else if (mode == 2)
+      { 
         analogWrite(RLED, redVal);
-        analogWrite(GLED, greenVal); 
+        analogWrite(GLED, greenVal);
         analogWrite(BLED, blueVal);
+        
       }
     //OFF (mode = 0)
     else
     {
-      digitalWrite(RLED, HIGH);
-      digitalWrite(GLED, HIGH);
-      digitalWrite(BLED, HIGH);
+      digitalWrite(RLED, LOW);
+      digitalWrite(GLED, LOW);
+      digitalWrite(BLED, LOW);
     }
   
 }
- 
- void loop()
+void loop()
  {
   currentButton = debounce(lastButton);  // Read debounced state
   if (lastButton == LOW && currentButton == HIGH) // If pressed
@@ -69,6 +70,12 @@ void setMode(int mode)
     ledMode++;  // Increment LED value
   }
   lastButton = currentButton;  // Reset button value
-  if (ledMode == 3) ledMode = 0; // Reset counter to 0
-    setMode(ledMode);  // Change LED state
+  if (ledMode == 3) 
+  {
+    redVal = random(255);
+    blueVal = random(255);
+    greenVal = random(255);
+    ledMode = 0; // Reset counter to 0  // Change LED state
+  }
+  setMode(ledMode);
  }
